@@ -3,7 +3,7 @@ image: Ubuntu  # образ для сборки
 
 branches:
   only:
-    - main  # ветка git
+- mainветка git
 
 build: off  # будем использовать свой скрипт build
 
