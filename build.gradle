@@ -5,7 +5,7 @@ version = 'ru.netology'
 sourceCompatibility = 101
 "text"
 compileTestJava.options.encoding = "UTF-8"
-
+            
 repositories {
     mavenCentral()
 }
