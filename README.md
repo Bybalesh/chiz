@@ -77,26 +77,15 @@ _This is italic text_
 ------
 # Lists
 
-* Unordered list can use asterisks
-- Or minuses
-+ Or pluses
-
-1. Make my changes
-    1. Fix bug
-        1. qwe
+Emphasis, aka italics, with *asterisks* or _underscores_.
+Stron emphasis, aka bold, with **asterisks** or __underscores__.
+Combined emphasis with **asterisks and _underscores_**.
+Strikethrough uses two tildes. ~~Scratch this.~~
     1. qwe
         1. qwe
             1. qwe
             1. qwe
                 1. qwe
-    3. Improve formatting
-        - Make the headings bigger
-2. Push my commits to GitHub
-3. Open a pull request
-    * Describe my changes
-    * Mention all the members of my team
-        * Ask for feedback
-
 + Create a list by starting a line with `+`, `-`, or `*`
 + Sub-lists are made by indenting 2 spaces:
   - Marker character change forces new list start:
@@ -225,11 +214,10 @@ abstract class URI extends BaseURI implements Factory
     var $list = NULL;
     private $var;
 
-    /**
-     * Returns a URI
-     *
-     * @return URI
-     */
+```css
+@font-face {
+  font-family: Chunkfive; src: url('Chunkfive.otf');
+}
     static public function _factory($stats = array(), $uri = 'http')
     {
         echo __METHOD__;
@@ -547,12 +535,6 @@ ___
 + Первый пункт
 + Второй пункт
 + Третий пункт
-
-Чекбоксы (checkboxes)
-Чтобы сделать чекбоксы, нужно использовать маркированный список, но между маркером и текстом поставить [x] для отмеченного пункта и [] — для неотмеченного.
-- [x] Отмеченный пункт
-- [ ] Неотмеченный пункт
-
 1. Пункт
 	1. Подпункт
 		1. Подподпункт
@@ -767,14 +749,9 @@ Text that is not a quote
 ## Цитирование кода
 Use `git status` to list all new or modified files that haven't yet been committed.
 Чтобы выделить код или текст в отдельный блок, используйте тройные грависы.
-Some basic Git commands are:
-```
-git status
-git add
-git commit
-```
 This site was built using [Gitverse Pages](https://gitverse.ru/)
-
+        $ ls *.sh
+        $ mv *.sh ~/tmp
 ## Ссылки на разделы
 # Example headings
 ## Sample Section

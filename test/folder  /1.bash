@@ -8,9 +8,7 @@ var envVars = '\\b(?:BASH|BASHOPTS|BASH_ALIASES|BASH_ARGC|BASH_ARGV|BASH_CMDS|BA
 		'environment': {
 			pattern: RegExp('\\$' + envVars),
 			alias: 'constant'
-		},
 
-		'variable': [
 			// [0]: Arithmetic Environment
 			{
 				pattern: /\$?\(\([\s\S]+?\)\)/,
@@ -21,8 +19,11 @@ var envVars = '\\b(?:BASH|BASHOPTS|BASH_ALIASES|BASH_ARGC|BASH_ARGV|BASH_CMDS|BA
 						{
 							pattern: /(^\$\(\([\s\S]+)\)\)/,
 							lookbehind: true
-						},
-
+		var insideString = {
+		'bash': commandAfterHeredoc,
+		'environment': {
+			pattern: RegExp('\\$' + envVars),					},
+      
 	var commandAfterHeredoc = {
 		pattern: /(^(["']?)\w+\2)[ \t]+\S.*/,
 		lookbehind: true,
@@ -45,11 +46,6 @@ var envVars = '\\b(?:BASH|BASHOPTS|BASH_ALIASES|BASH_ARGC|BASH_ARGV|BASH_CMDS|BA
 				inside: {
 					'variable': /^\$\(|^`|\)$|`$/
 				}
-			},
-			// [2]: Brace expansion
-			{
-				pattern: /\$\{[^}]+\}/,
-				greedy: true,
 				inside: {
 					'operator': /:[-=?+]?|[!\/]|##?|%%?|\^\^?|,,?/,
 					'punctuation': /[\[\]]/,
@@ -82,11 +78,10 @@ var envVars = '\\b(?:BASH|BASHOPTS|BASH_ALIASES|BASH_ARGC|BASH_ARGV|BASH_CMDS|BA
 				lookbehind: true,
 				alias: 'function'
 			},
-			{
-				// b)
-				pattern: /\b[\w-]+(?=\s*\(\s*\)\s*\{)/,
-				alias: 'function'
-			}
+		{
+pattern: /(^(["']?)\w+\2)[ \t]+\S.*/,
+lookbehind: true,
+		}
 		],
 		// Highlight variable names as variables in for and select beginnings.
 		'for-or-select': {
@@ -133,13 +128,6 @@ var envVars = '\\b(?:BASH|BASHOPTS|BASH_ALIASES|BASH_ARGC|BASH_ARGV|BASH_CMDS|BA
 				}
 			},
 			// “Normal” string
-			{
-				// https://www.gnu.org/software/bash/manual/html_node/Double-Quotes.html
-				pattern: /(^|[^\\](?:\\\\)*)"(?:\\[\s\S]|\$\([^)]+\)|\$(?!\()|`[^`]+`|[^"\\`$])*"/,
-				lookbehind: true,
-				greedy: true,
-				inside: insideString
-			},
 			{
 				// https://www.gnu.org/software/bash/manual/html_node/Single-Quotes.html
 				pattern: /(^|[^$\\])'[^']*'/,
@@ -188,8 +176,8 @@ var envVars = '\\b(?:BASH|BASHOPTS|BASH_ALIASES|BASH_ARGC|BASH_ARGV|BASH_CMDS|BA
 			pattern: /\d?<>|>\||\+=|=[=~]?|!=?|<<[<-]?|[&\d]?>>|\d[<>]&?|[<>][&=]?|&[>&]?|\|[&|]?/,
 			inside: {
 				'file-descriptor': {
-					pattern: /^\d/,
-					alias: 'important'
+// [1]: Command Substitution// [1]: Command Substitution// [1]: Command Substitution
+// [2]: Brace expansion
 				}
 			}
 
