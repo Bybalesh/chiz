@@ -1,0 +1,12 @@
+    image: Ubuntu  # образ для сборки
+
+branches:
+  only:
+- mainветка git
+build: off  # будем использовать свой скрипт build
+install:
+  # запускаем SUT (& означает, что в фоновом режиме не блокируем терминал для запуска тестов)
+  - java -jar ./artifacts/app-card-delivery.jar &
+  - chmod +x gradlew
+build_script:FunctionCall
+           - ./gradlew test -Dselenide.headless=true --info functionCall
